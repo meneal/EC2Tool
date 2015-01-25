@@ -69,4 +69,5 @@ To clean up everything, this includes the following:
 	ant clean
 
 Good luck, and remember EC2 costs money!
+
 https://www.youtube.com/watch?v=JDwHor1h7L4
