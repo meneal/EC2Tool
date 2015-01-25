@@ -24,14 +24,14 @@ http://ant.apache.org/manual/index.html
 If you are in linux you can get it more easily by running the
 following two commands:
     
-    ```sudo-apt-get update```
-    ```sudo-apt-get install ant```
+    sudo-apt-get update
+    sudo-apt-get install ant
 
 If you are in OSX I suggest you set up
 [homebrew](http://brew.sh/ "Homebrew") and 
 run the following command:
     
-    ```brew install ant```
+    brew install ant
 
 If you are in windows you're on your own.
 
@@ -39,34 +39,34 @@ If you are in windows you're on your own.
 
 For an initial build of the tool:
 	
-	```ant```
+	ant
 
 To create a security group:
     
-    ```ant ec2grp```
+    ant ec2grp
 
 To create a security key (Make sure you remember the name of the key!):
     
-    ```ant ec2gen```
+    ant ec2gen
 
 To add your ip to the existing security group:
     
-    ```ant ec2ip```
+    ant ec2ip
 
 To spin up an ec2 instance:
     
-    ```ant ec2inst```
+    ant ec2inst
 
 To terminate all of the running instances:
     
-    ```ant ec2term```
+    ant ec2term
 
 To clean up everything, this includes the following:
 * Delete all .pem files
 * Delete the class file
 * Delete the key associated with the pem file 
 	
-	```ant clean```
+	ant clean
 
 Good luck, and remember EC2 costs money!
 https://www.youtube.com/watch?v=JDwHor1h7L4
