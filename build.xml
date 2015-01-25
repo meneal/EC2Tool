@@ -1,0 +1,70 @@
+
+
+<project name="EC2Tool" default="build" basedir=".">
+    <path id="aws.java.sdk.classpath">
+        <fileset dir="./lib" includes="**/*.jar"/>
+        <pathelement location="."/>
+    </path>
+
+    <target name="build">
+        <javac includeantruntime="false" srcdir="." destdir="." classpathref="aws.java.sdk.classpath"/>
+    </target>
+
+    <target name="ec2gen" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-g" />
+        </java>
+        <chmod perm="400">
+            <fileset dir="." includes="*.pem"/>
+        </chmod>
+    </target>
+
+    <target name="ec2inst" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-i" />
+        </java>
+    </target>
+
+    <target name="ec2list" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-l" />
+        </java>
+    </target>
+    
+    <target name="ec2term" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-t" />
+        </java>
+    </target>
+
+    <target name="ectgrp" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-s" />
+        </java>
+    </target>
+
+    <target name="ec2ip" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-ip" />
+        </java>
+    </target>
+
+    <target name="ec2cred" depends="build">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-c" />
+        </java>
+    </target>
+
+    <target name = "clean">
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-d" />
+        </java>
+        <delete verbose="true">
+            <fileset dir="." includes="*.pem"/>
+            <fileset dir="." includes= "*.class"/>
+        </delete>
+    </target>
+</project>
+
+
+
