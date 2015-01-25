@@ -37,7 +37,7 @@
         </java>
     </target>
 
-    <target name="ectgrp" depends="build">
+    <target name="ec2grp" depends="build">
         <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
             <arg value="-s" />
         </java>
