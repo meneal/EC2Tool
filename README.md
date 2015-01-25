@@ -61,10 +61,7 @@ To terminate all of the running instances:
     
     ant ec2term
 
-To clean up everything, this includes the following:
-* Delete all .pem files
-* Delete the class file
-* Delete the key associated with the pem file 
+To delete all .pem files, delete the class file, delete the key associated with the pem file:
 	
 	ant clean
 
