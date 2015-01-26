@@ -49,10 +49,6 @@ To create a security key (Make sure you remember the name of the key!):
     
     ant ec2gen
 
-To add your ip to the existing security group, currently broken DON'T USE IT!:
-    
-    ant ec2ip
-
 To spin up an ec2 instance:
     
     ant ec2inst
