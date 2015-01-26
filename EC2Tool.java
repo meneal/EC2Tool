@@ -166,6 +166,11 @@ public class EC2Tool {
 		
 	}
 
+	/**
+	 * This is broken right now.  The ip is set to a general ip, so anyone can access via
+	 * ssh.  It's unlikely there would be a problem since a user would still need to have a 
+	 * private key that is authorized, but this should be fixed.
+	 */
 	private static void genSecGroup() {
 		System.out.println("This Program will generate a security group");
 		System.out.println("with the name bitcrusher and ssh ability for");
@@ -182,13 +187,6 @@ public class EC2Tool {
 		
 		String ip = "0.0.0.0/0";
 		
-		try{
-			InetAddress addy = InetAddress.getLocalHost();
-			ip = addy.getHostAddress() + "/10";
-		}catch(UnknownHostException e){
-			System.out.println("Error getting your ip.");
-			System.exit(0);
-		}
 		
 		List<String> ipRanges = Collections.singletonList(ip);
 		
@@ -417,9 +415,7 @@ public class EC2Tool {
 		}
    		String ip = listLiveInstances();
    		System.out.println("");
-   		System.out.println("To ssh into server follow these steps:");
-   		System.out.println("Set permissions on pem file with 'chmod 400 " + keyname + ".pem'.");
-   		System.out.println("Then connect with 'ssh -i " + keyname + ".pem ec2-user@" + ip +"'");
+   		System.out.println("Connect with 'ssh -i " + keyname + ".pem ec2-user@" + ip +"'");
    		System.out.println("If connection fails, run with -l option and check status.");
    		System.exit(0);
 	}
@@ -438,7 +434,14 @@ public class EC2Tool {
 		
 		CreateKeyPairRequest createKPReq = new CreateKeyPairRequest();
 		createKPReq.withKeyName(keyname);
-		CreateKeyPairResult resultPair = ec2.createKeyPair(createKPReq);
+		CreateKeyPairResult resultPair = null;
+		try{
+			resultPair = ec2.createKeyPair(createKPReq);
+		}catch(AmazonServiceException e){
+			System.out.println("Key already exists!");
+			System.exit(0);
+		}
+
 		KeyPair keyPair = new KeyPair();
 		keyPair = resultPair.getKeyPair();
 		String privateKey = keyPair.getKeyMaterial();
