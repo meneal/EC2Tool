@@ -59,6 +59,9 @@
         <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
             <arg value="-d" />
         </java>
+        <java classname="EC2Tool" classpathref="aws.java.sdk.classpath" fork="true">
+            <arg value="-t" />
+        </java>
         <delete verbose="true">
             <fileset dir="." includes="*.pem"/>
             <fileset dir="." includes= "*.class"/>

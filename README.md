@@ -61,7 +61,7 @@ To terminate all of the running instances:
     
     ant ec2term
 
-To delete all .pem files, delete the class file, delete the key associated with the pem file:
+To delete all .pem files, delete the class file, delete the key associated with the pem file, and terminate all running instances:
 	
 	ant clean
 
